@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netherfire.server.db.mapper.UserInfoMapper">
+
+  <select id="getUserInfoByAccountId"  parameterType="java.lang.String"  resultType="com.netherfire.server.db.entity.UserInfo" >
+      select * from t_user_info where accountId = #{accountId}
+  </select>
+  <select id="getUserInfoByUsernameAndChannel"    resultType="com.netherfire.server.db.entity.UserInfo" >
+      select * from t_user_info where username = #{arg0} and channel = #{arg1}
+  </select>
+  <select id="getUserInfoByUsernameAndPasswordAndChannel"    resultType="com.netherfire.server.db.entity.UserInfo" >
+      select * from t_user_info where username = #{arg0} and password = #{arg1} and channel = #{arg2}
+  </select>
+  
+  <select id="getUserInfoByDeviceMac"  parameterType="java.lang.String"  resultType="com.netherfire.server.db.entity.UserInfo" >
+      select * from t_user_info where deviceMac = #{deviceMac} limit 1
+  </select>
+  <select id="getUserInfoByPhoneNum"  parameterType="java.lang.String"  resultType="com.netherfire.server.db.entity.UserInfo" >
+      select * from t_user_info where phoneNum = #{phoneNum} limit 1
+  </select>
+  
+  <select id="getUserInfoById" resultType="com.netherfire.server.db.entity.UserInfo">
+       select * from t_user_info where id = #{id}
+  </select>
+  
+  <select id="getUserByFacebookId"  resultType="com.netherfire.server.db.entity.UserInfo">
+       select * from t_user_info where facebookId = #{facebookId}
+  </select>
+  <select id="getUserByUsername"  resultType="com.netherfire.server.db.entity.UserInfo">
+       select * from t_user_info where username = #{username}
+  </select>
+  <select id="getUserByAccessToken"  resultType="com.netherfire.server.db.entity.UserInfo">
+       select * from t_user_info where accessToken = #{accessToken}
+  </select>
+  
+  <select id="getIdsByFbId" resultType="java.lang.Long">
+            select id from t_user_info
+            <where>
+             facebookId in 
+             <foreach collection="list" item="fbid" index="index" open="(" separator="," close=")">
+               #{fbid}
+             </foreach>
+            </where>
+  </select>
+  
+  <select id="getMaxId" resultType="java.lang.Long">
+         select max(id) from t_user_info
+  </select>
+  
+  <update id="updateDeviceMac"  >
+     update t_user_info set deviceMac =#{deviceMac} where accountId=#{accountId}
+  </update>
+  
+  <update id="updateFacebookInfo"  >
+     update t_user_info set facebookId =#{facebookId}, name=#{name}, img=#{img} ,updateFbInfo=1  where accountId=#{accountId}
+  </update>
+  
+  <update id="updateTwitterId"  >
+     update t_user_info set twitterId =#{twitterId} where accountId=#{accountId}
+  </update>
+  
+  <update id="updateImg">
+      update t_user_info set img =#{img} where id=#{id}
+  </update>
+  <update id="resetUpdateFbInfo">
+      update t_user_info set updateFbInfo = 0 where id=#{id}
+  </update>
+  
+  <update id="updateAccessToken"  >
+     update t_user_info set tokenType =#{tokenType} ,accessToken =#{accessToken} , expiresIn =#{expiresIn} where id=#{id}
+  </update>
+  
+  <insert id="saveUserInfo" parameterType="com.netherfire.server.db.entity.UserInfo">
+      insert into t_user_info(id,name,username,password,channel,accountId,facebookId,img,joinTime,lastLoginTime,role,lockStatus,muteTime,muteReason,phoneNum,deviceMac,deviceId,macAddress,androidId,twitterId,updateFbInfo) 
+      VALUES(#{id},#{name},#{username},#{password},#{channel},#{accountId},#{facebookId},#{img},#{joinTime},#{lastLoginTime},#{role},#{lockStatus},#{muteTime},#{muteReason},#{phoneNum},#{deviceMac},#{deviceId},#{macAddress},#{androidId},#{twitterId},#{updateFbInfo})
+  </insert>
+  
+  
+   <update id="update" parameterType="com.netherfire.server.db.entity.UserInfo">
+        update t_user_info
+        <set>
+            <if test="name != null">
+               name = #{name},
+            </if>
+            <if test="username != null">
+               username = #{username},
+            </if>
+            <if test="password != null">
+               password = #{password},
+            </if>
+            <if test="channel != null">
+               channel = #{channel},
+            </if>
+            <if test="accountId != null">
+               accountId = #{accountId},
+            </if>
+            <if test="facebookId != null">
+               facebookId = #{facebookId},
+            </if>
+            <if test="img != null">
+               img = #{img},
+            </if>
+            <if test="joinTime != null">
+               joinTime = #{joinTime},
+            </if>
+            <if test="role != null">
+               role = #{role},
+            </if>
+            <if test="lockStatus != null">
+               lockStatus = #{lockStatus},
+            </if>
+            <if test="muteTime">
+               muteTime = #{muteTime},
+            </if>
+            <if test="muteReason != null">
+               muteReason = #{muteReason},
+            </if>
+            <if test="phoneNum != null">
+               phoneNum = #{phoneNum},
+            </if>
+            <if test="deviceMac != null">
+               deviceMac = #{deviceMac},
+            </if>
+            <if test="deviceId != null">
+               deviceId = #{deviceId},
+            </if>
+            <if test="macAddress != null">
+               macAddress = #{macAddress},
+            </if>
+            <if test="deviceId != null">
+               deviceId = #{deviceId},
+            </if>
+            <if test="androidId != null">
+               androidId = #{androidId},
+            </if>
+            <if test="twitterId != null">
+               twitterId = #{twitterId},
+            </if>
+            <if test="updateFbInfo != null">
+               updateFbInfo = #{updateFbInfo}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+  
+</mapper>
+
+

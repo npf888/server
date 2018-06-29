@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netherfire.server.db.mapper.ImageMapper">
+
+
+ 
+ <insert id="saveImage" parameterType="com.netherfire.server.db.entity.Image">
+  insert into texas_gm.t_image(create_time,image_name) VALUES(#{create_time},#{image_name});
+ </insert>
+
+</mapper>

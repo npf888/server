@@ -1,0 +1,38 @@
+{
+    "GMRole": 1,
+    "NormalRole": 0,
+    "RobotRole": 2,
+    "def_delivery_ID": 10000,
+    "defaultImages": 12,
+    "serverIp":"192.168.1.58",
+    "gMRole": 1,
+    "googlePayMap": {
+        16: {
+            "googleId": 16,
+            "googlePlayApi": "https://www.googleapis.com/androidpublisher/v2/applications",
+            "googlePlayClientId": "807013412270-shsv8j6o55kn8hej6l8nv6q08qf8h4nu.apps.googleusercontent.com",
+            "googlePlayClientSecret": "W-NYElCn-nwWzHi3Z6JCFaqq",
+            "googlePlayCode": "4/nFhBW648_ohgT1qfDLOn6uxPIpnEZEV8xYen8UA1Zrk",
+            "googlePlayRedirectUri": "urn:ietf:wg:oauth:2.0:oob",
+            "googlePlayRefreshToken": "1/i6Az7nGE_F0LuhxrNNoso8-QTNHeDfuDxXRIifckrJE11111111",
+            "googlePlayTokenApi": "https://accounts.google.com/o/oauth2/token11111111111"
+        }
+    },
+    "iosPay": {
+        "production": "https://sandbox.itunes.apple.com/verifyReceipt",
+        "sandbox": "https://buy.itunes.apple.com/verifyReceipt"
+    },
+     "loadPath": "/home/slotgame/public/",
+     "updatePath": "/home/slotgame/public/head/",
+    "normalRole": 0,
+    "port": 80,
+    "redisServerKey": "servers",
+    "robotRole": 2,
+    "serverStatusRun": 1,
+    "serverStatusStop": 2,
+    "serverStatusTest": 0,
+    "threadCount": 50,
+    "userinfo_maxi_id": 10000,
+    "isBindIp": true,
+    "bindingIp": "192.168.1.58"
+}

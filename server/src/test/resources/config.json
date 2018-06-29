@@ -1,0 +1,51 @@
+{
+    "GMRole": 1,
+    "NormalRole": 0,
+    "RobotRole": 2,
+    "def_delivery_ID": 10000,
+    "defaultImages": 12,
+    "serverIp":"192.168.1.41",
+    "gMRole": 1,
+    "googlePayMap": {
+        17: {
+            "googleId": 17,
+            "googlePlayApi": "https://www.googleapis.com/androidpublisher/v2/applications",
+            "googlePlayClientId": "405322749219-mfpckcleehuo990p1mrjak2t9iajbpg5.apps.googleusercontent.com",
+            "googlePlayClientSecret": "5W17rY3ZT3AecQInrJ-6mXfO",
+            "googlePlayCode": "4/j51NbLkrzBWlJemAwDKWc9QPf9mb6kfJeNqVyIRmrr8",
+            "googlePlayRedirectUri": "urn:ietf:wg:oauth:2.0:oob",
+            "googlePlayRefreshToken": "1/3_Rx8NCOhTdPTEgQUAniPgQvQD4XCP38SP6wtiNFtzc",
+            "googlePlayTokenApi": "https://accounts.google.com/o/oauth2/token"
+        }
+    },
+    "iosPay": {
+        "production": "https://sandbox.itunes.apple.com/verifyReceipt",
+        "sandbox": "https://buy.itunes.apple.com/verifyReceipt"
+    },
+    "boquPay": {
+        "userUrl": "http://www.bo-qu.com/api/user/info",
+        "url": "http://www.bo-qu.com/api/user/order",
+        "tokenUrl": "http://www.bo-qu.com/api/user/login/third",
+        "client_id": 8,
+        "client_secret": "1Pkbu1X9mxjTtBw9YscmniqoUV92TAZxpslxD45V",
+        "game_id": 17
+    },
+    "loadPath": "C:/server_public/public/",
+    "updatePath": "C:/server_public/public/head/",
+    "updateWeixinPath": "C:/server_public/public/weixin/",
+    "normalRole": 0,
+    "port": 80,
+    "redisServerKey": "servers",
+    "robotRole": 2,
+    "serverStatusRun": 1,
+    "serverStatusStop": 2,
+    "serverStatusTest": 0,
+    "threadCount": 50,
+    "userinfo_maxi_id": 10000,
+    "weixinRedirectUrl": "http://dice.bo-qu.com:8080/bin/index.html",
+    "boquWeixinRedirectUrl": "http://dice.bo-qu.com:80/bin/index.html",
+    "boquSendMsgUrl": "http://dev.bo-qu.com/console/api/sms",
+    "isBindIp": true,
+    "bindingIp": "192.168.1.41",
+    "cdnDomain": "dice-cdn.bo-qu.com"
+}

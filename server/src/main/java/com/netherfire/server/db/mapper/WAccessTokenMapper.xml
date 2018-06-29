@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netherfire.server.db.mapper.WAccessTokenMapper">
+
+  
+  <select id="queryList" resultType="com.netherfire.server.db.entity.WAccessToken">
+       select * from w_access_token where 1=1
+       	    <if test="code != null">
+               and code = #{code}
+            </if>
+            <if test="access_token != null">
+               and access_token = #{access_token}
+            </if>
+            <if test="expires_in != null">
+               and expires_in = #{expires_in}
+            </if>
+            <if test="refresh_token != null">
+               and refresh_token = #{refresh_token}
+            </if>
+            <if test="openid != null">
+               and openid = #{openid}
+            </if>
+            <if test="scope != null">
+               and scope = #{scope}
+            </if>
+  </select> 
+  
+  
+  <insert id="insert" parameterType="com.netherfire.server.db.entity.WAccessToken">  
+         insert into w_access_token  
+         <trim prefix="(" suffix=")" suffixOverrides=",">  
+             <if test="code != null"> code,</if>  
+             <if test="access_token != null"> access_token,</if>  
+             <if test="expires_in != null"> expires_in,</if>  
+             <if test="refresh_token != null"> refresh_token,</if>  
+             <if test="openid != null"> openid, </if>  
+             <if test="scope != null"> scope   </if>  
+         </trim>  
+         <trim prefix=" values(" suffix=")" suffixOverrides=",">  
+             <if test="code != null">#{code,jdbcType=VARCHAR},</if>  
+             <if test="access_token != null"> #{access_token,jdbcType=VARCHAR},   </if>  
+             <if test="expires_in != null"> #{expires_in,jdbcType=INTEGER},  </if>  
+             <if test="refresh_token != null"> #{refresh_token,jdbcType=VARCHAR},  </if>  
+             <if test="openid != null"> #{openid,jdbcType=VARCHAR},</if>  
+             <if test="scope != null"> #{scope,jdbcType=VARCHAR}    </if>  
+         </trim>  
+  </insert>  
+  
+   <update id="update" parameterType="com.netherfire.server.db.entity.WAccessToken">
+        update w_access_token
+        <set>
+       		<trim  suffixOverrides=",">  
+	            <if test="code != null">
+	                code = #{code},
+	            </if>
+	            <if test="access_token != null">
+	                access_token = #{access_token},
+	            </if>
+	            <if test="expires_in != null">
+	                expires_in = #{expires_in},
+	            </if>
+	            <if test="refresh_token != null">
+	                refresh_token = #{refresh_token},
+	            </if>
+	            <if test="openid != null">
+	                openid = #{openid},
+	            </if>
+	            <if test="scope != null">
+	                scope = #{scope}
+	            </if>
+            </trim>  
+        </set>
+        where id = #{id}
+    </update>
+  
+
+</mapper>
+
+

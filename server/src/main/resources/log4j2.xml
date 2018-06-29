@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- status: "trace", "debug", "info", "warn", "error" and "fatal"    monitorInterval 这个参数的单位是秒，就是多少秒读取一遍配置文件-->
+<configuration status="info" monitorInterval="1800">
+     <!-- 定义的常量 -->
+     <properties>
+        <property name="LOG_HOME">./logs</property>
+        <property name="debugLog">debug</property>
+        <property name="errorLog">error</property>
+     </properties>
+   <appenders>
+       <Console name="Console" target="SYSTEM_OUT">
+              <!-- 这个限制和 logger 标签的level属性可以起到一样的效果 但是最好在这里定义可以分的更细  -->
+             <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+       </Console>
+        <RollingRandomAccessFile name="debugLog" append="true" fileName="${LOG_HOME}/${debugLog}.log" 
+                                 filePattern="${LOG_HOME}/$${date:yyyy-MM-dd}-${debugLog}/%d{yyyy-MM-dd HH-mm}-%i.log">
+             <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+             <Policies>
+                 <!--和filePattern属性对应  这里是10分钟归档一次-->
+                  <TimeBasedTriggeringPolicy interval="10"/>
+                 <!--文件达到25MB保存开始归档-->
+                  <SizeBasedTriggeringPolicy size="25MB"/>
+             </Policies>
+             <!-- 在刷新时间到来前(这里是10分钟) 保存最新的1800个文档-->
+            <DefaultRolloverStrategy max="1800"/>
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="errorLog" append="true" fileName="${LOG_HOME}/${errorLog}.log"
+                                 filePattern="${LOG_HOME}/$${date:yyyy-MM-dd}-${errorLog}/%d{yyyy-MM-dd HH-mm}-%i.log">
+             <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+             <Policies>
+                 <!--和filePattern属性对应  10分钟归档一次 -->
+                <TimeBasedTriggeringPolicy interval="10"/>
+                <!--文件达到20k保存一次-->
+                <SizeBasedTriggeringPolicy size="25MB"/>
+             </Policies>
+              <!-- 在刷新时间到来前(10分钟) 保存最新的1800个文档-->
+            <DefaultRolloverStrategy max="1800"/>
+        </RollingRandomAccessFile>
+   </appenders>
+   
+  <loggers>
+  <!-- 
+   <logger name="com.guo.test.Test1" level="trace" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="MyFile"/>
+            <appender-ref ref="Console"/>
+        </logger>
+   -->
+        <root level="trace" >
+            <appender-ref ref="debugLog"/>
+            <appender-ref ref="errorLog"/>
+             <appender-ref ref="Console"/>
+        </root>
+  </loggers>
+</configuration> 

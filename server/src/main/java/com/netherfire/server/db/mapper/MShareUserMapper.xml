@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.netherfire.server.db.mapper.MShareUserMapper">
+
+  
+  
+  <select id="queryList" resultType="com.netherfire.server.db.entity.MShareUser">
+       select * from m_share_user where 1=1
+       	    <if test="open_id != null">
+               and open_id = #{open_id}
+            </if>
+            <if test="access_token != null">
+               and access_token = #{access_token}
+            </if>
+            <if test="token_expires_in != null">
+               and token_expires_in = #{token_expires_in}
+            </if>
+            <if test="jsapi_ticket != null">
+               and jsapi_ticket = #{jsapi_ticket}
+            </if>
+            <if test="ticket_expires_in != null">
+               and ticket_expires_in = #{ticket_expires_in}
+            </if>
+  </select> 
+  
+  
+  <insert id="insert" parameterType="com.netherfire.server.db.entity.MShareUser">  
+         insert into m_share_user  
+         <trim prefix="(" suffix=")" suffixOverrides=",">  
+             <if test="open_id != null"> open_id,</if>  
+             <if test="access_token != null"> access_token,</if>  
+             <if test="token_expires_in != null"> token_expires_in, </if>  
+             <if test="jsapi_ticket != null"> jsapi_ticket,</if>  
+             <if test="ticket_expires_in != null"> ticket_expires_in</if>  
+         </trim>  
+         <trim prefix=" values(" suffix=")" suffixOverrides=",">  
+             <if test="open_id != null">#{open_id,jdbcType=VARCHAR},</if>  
+             <if test="access_token != null"> #{access_token,jdbcType=VARCHAR}, </if>  
+             <if test="token_expires_in != null"> #{token_expires_in,jdbcType=INTEGER},</if>  
+             <if test="jsapi_ticket != null"> #{jsapi_ticket,jdbcType=VARCHAR},</if>  
+             <if test="ticket_expires_in != null"> #{ticket_expires_in,jdbcType=INTEGER}</if>  
+         </trim>  
+  </insert>  
+  
+   <update id="update" parameterType="com.netherfire.server.db.entity.MShareUser">
+        update m_share_user
+        <set>
+        	<trim  suffixOverrides=",">  
+	            <if test="open_id != null">
+	               open_id = #{open_id},
+	            </if>
+	            <if test="access_token != null">
+	               access_token = #{access_token},
+	            </if>
+	            <if test="token_expires_in != null">
+	               token_expires_in = #{token_expires_in},
+	            </if>
+	            <if test="jsapi_ticket != null">
+	               jsapi_ticket = #{jsapi_ticket},
+	            </if>
+	            <if test="ticket_expires_in != null">
+	               ticket_expires_in = #{ticket_expires_in}
+	            </if>
+            </trim> 
+        </set>
+        where id = #{id}
+    </update>
+  
+  
+  
+  
+</mapper>
+
+
